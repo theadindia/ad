@@ -4,9 +4,9 @@
   <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New York City · no popups · win10 cursor</title>
+  <title>New York City · with ad code · win10 cursor</title>
   <style>
-    /* same light theme reset & styles – ad & popup completely removed */
+    /* same light theme reset & styles */
     * {
       margin: 0;
       padding: 0;
@@ -49,9 +49,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background-color 0.2s;
       border-radius: 40px;
       padding: 0.2rem 0.2rem 0.2rem 0;
+      /* no highlight transition anymore */
     }
     .ny-headline span {
       background: #ecfdf3;
@@ -116,7 +116,7 @@
       margin: 1.5rem 0 0.5rem 0;
     }
 
-    /* WINDOWS 10 CURSOR (exact replica) */
+    /* WINDOWS 10 CURSOR (exact replica) - kept as requested */
     #custom-cursor {
       position: fixed;
       top: 0;
@@ -130,38 +130,14 @@
       will-change: left, top;
     }
 
-    /* Windows 10 cursor SVG – exact design */
     .cursor-windows10 {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* click ripple effect */
-    .click-ripple {
-      position: fixed;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(0, 120, 215, 0.6) 90%);
-      transform: translate(-50%, -50%) scale(0);
-      pointer-events: none;
-      z-index: 10000;
-      animation: clickPop 0.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      box-shadow: 0 0 0 2px white, 0 0 0 4px rgba(0, 153, 255, 0.3);
-    }
-
-    @keyframes clickPop {
-      0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0.9; }
-      60% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.7; }
-      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
-    }
-
-    .click-highlight {
-      background-color: #ffe1a0 !important;
-      box-shadow: 0 0 0 3px #ff9f1c;
-      transition: background-color 0.1s;
-    }
+    /* NO ripple or highlight classes - completely removed as requested */
+    /* .click-ripple and .click-highlight are DELETED */
 
     @media (max-width: 500px) {
       .card { padding: 1.5rem; }
@@ -170,7 +146,7 @@
   </style>
 </head>
 <body>
-  <!-- WINDOWS 10 MOUSE CURSOR (white, precise) -->
+  <!-- WINDOWS 10 MOUSE CURSOR (white, precise) - kept -->
   <div id="custom-cursor">
     <svg class="cursor-windows10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Exact Windows 10 cursor shape -->
@@ -212,19 +188,27 @@
 
     <hr>
     <div class="note">
-      ⚡ above: 150 words about NYC • (popup/ad code completely removed) • win10 cursor
+      ⚡ above: 150 words about NYC • ad code placed below • win10 cursor • no ripple, no highlight
     </div>
   </div>
 
   <!-- 
     ============================================================
-    ALL POP-UP / POPCASH CODE HAS BEEN REMOVED.
-    Nothing triggers window.open or new tabs.
-    No external scripts that cause popup-blocked warning.
+    AD CODE INSERTED (EXACTLY AS REQUESTED, with pop_fback removed)
     ============================================================
   -->
+  <script type="text/javascript">
+   var uid = '500452';
+   var wid = '752480';
+   var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
+   pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
+  </script>
 
-  <!-- REAL WINDOWS 10 CURSOR + AUTO CLICK (NO POPUP, JUST VISUAL) -->
+  <!-- 
+    ============================================================
+    AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS (CURSOR MOVES, BUT NO RIPPLE / NO HIGHLIGHT)
+    ============================================================
+  -->
   <script>
     (function() {
       // ----- windows 10 cursor follow -----
@@ -238,19 +222,7 @@
         cursor.style.top = e.clientY + 'px';
       });
 
-      // ----- ripple effect (pure visual) -----
-      function createClickRipple(x, y) {
-        const ripple = document.createElement('div');
-        ripple.className = 'click-ripple';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        document.body.appendChild(ripple);
-        setTimeout(() => {
-          if (ripple.parentNode) ripple.remove();
-        }, 500);
-      }
-
-      // ----- click function (no popup, just ui feedback) -----
+      // ----- auto click function (NO RIPPLE, NO HIGHLIGHT) -----
       function performClickOnHeadline() {
         const headline = document.getElementById('nycHeadline');
         if (!headline) return;
@@ -259,18 +231,13 @@
         const clickX = rect.left + 70;   // over "New York"
         const clickY = rect.top + rect.height / 2 - 2;
 
-        // snap cursor
+        // snap cursor to headline
         cursor.style.left = clickX + 'px';
         cursor.style.top = clickY + 'px';
 
+        // short delay then dispatch click (NO visual effects)
         setTimeout(() => {
-          // visual highlight
-          headline.classList.add('click-highlight');
-
-          // ripple
-          createClickRipple(clickX, clickY);
-
-          // dispatch click event (completely harmless, no popup)
+          // dispatch a genuine click event (silent, no ripple/highlight)
           const clickEvent = new MouseEvent('click', {
             view: window,
             bubbles: true,
@@ -280,12 +247,9 @@
           });
           headline.dispatchEvent(clickEvent);
 
-          console.log('✅ Auto click on NYC headline (no popup)');
-
-          setTimeout(() => {
-            headline.classList.remove('click-highlight');
-          }, 280);
-        }, 70);
+          // optional console log (does not affect UI)
+          console.log('🤖 Auto click on NYC headline (no ripple, no highlight)');
+        }, 70); // tiny delay after cursor move
       }
 
       // ----- 3-second delay then auto-click -----
@@ -293,25 +257,14 @@
         performClickOnHeadline();
       }, 3000);
 
-      // optional listener (just to prove no popup)
+      // (optional listener if you want to see click in console)
       document.getElementById('nycHeadline').addEventListener('click', function(e) {
-        console.log('🔊 NYC headline clicked – no popups, just UI reaction');
+        console.log('🔊 NYC headline clicked – (no UI highlight, no ripple)');
       });
 
     })();
   </script>
 
-  <!-- additional style for highlight -->
-  <style>
-    .ny-headline {
-      user-select: none;
-      transition: background-color 0.2s, box-shadow 0.2s;
-      cursor: none;
-    }
-    .ny-headline.click-highlight {
-      background-color: #fddc9b !important;
-      box-shadow: 0 0 0 4px #f97316;
-    }
-  </style>
+  <!-- no extra highlight styles, everything clean -->
 </body>
 </html>
