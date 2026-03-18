@@ -1,331 +1,352 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-  <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New York City · popups fixed · win10 cursor</title>
-  <style>
-    /* same light theme reset & styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: none;      /* hide system pointer – we draw windows 10 style */
-    }
-
-    body {
-      background-color: #f8faff;    
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.5;
-      color: #1e293b;   
-      position: relative;             
-    }
-
-    .card {
-      max-width: 780px;
-      width: 100%;
-      background-color: #ffffff;
-      border-radius: 32px;
-      box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.05), 
-                  0 5px 12px -4px rgba(0, 0, 0, 0.02);
-      padding: 2rem 2rem 2.5rem 2rem;
-      border: 1px solid #f0f2f5;
-      transition: all 0.2s ease;
-    }
-
-    .ny-headline {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-      color: #0b1e33;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 40px;
-      padding: 0.2rem 0.2rem 0.2rem 0;
-      background-color: transparent;
-      transition: background-color 0.2s;
-    }
-    .ny-headline.click-highlight {
-      background-color: #fff1c0 !important;
-    }
-    .ny-headline span {
-      background: #ecfdf3;
-      color: #0b4f2e;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.2rem 0.9rem;
-      border-radius: 40px;
-      border: 1px solid #cef0d7;
-    }
-
-    .ny-description {
-      font-size: 1rem;
-      color: #334155;
-      background: #f9fbfe;
-      padding: 1.25rem 1.5rem;
-      border-radius: 24px;
-      border: 1px solid #e9edf4;
-      margin: 1.2rem 0 0 0;        
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
-    }
-
-    .ny-description p {
-      margin-bottom: 0.8rem;
-    }
-
-    .ny-description p:last-child {
-      margin-bottom: 0;
-    }
-
-    .keyword-badge {
-      display: inline-block;
-      background-color: #e6f0ff;
-      color: #004e9e;
-      font-weight: 500;
-      font-size: 0.85rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: 30px;
-      margin: 0.2rem 0.15rem;
-      border: 1px solid #cddfff;
-      white-space: nowrap;
-    }
-
-    .keyword-block {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 0.6rem;
-      margin-top: 0.8rem;
-      align-items: center;
-    }
-
-    .note {
-      text-align: center;
-      color: #8596b0;
-      font-size: 0.8rem;
-      margin-top: 1.8rem;      
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #eef2f8;
-      margin: 1.5rem 0 0.5rem 0;
-    }
-
-    /* WINDOWS 10 CURSOR (exact replica) */
-    #custom-cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 32px;
-      height: 32px;
-      pointer-events: none;
-      z-index: 9999;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-      transition: transform 0.05s linear;
-      will-change: left, top;
-    }
-
-    .cursor-windows10 {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* Ad container - completely harmless, no popup */
-    .ad-container {
-      width: 100%;
-      max-width: 728px;
-      margin: 20px auto 0;
-      padding: 10px;
-      background: #f0f4fa;
-      border-radius: 12px;
-      border: 1px dashed #62748c;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #2c3e50;
-    }
-
-    @media (max-width: 500px) {
-      .card { padding: 1.5rem; }
-      .ny-headline { font-size: 1.5rem; flex-wrap: wrap; }
-    }
-  </style>
+   <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$100 Earn Click Here</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            color: #1a3b5d;
+            font-size: 4rem;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+        
+        h1:hover {
+            color: #0078ff;
+            transform: scale(1.05);
+            text-shadow: 4px 4px 8px rgba(0,120,255,0.3);
+            border-color: #0078ff;
+            border-radius: 15px;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .click-instruction {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; color: #0078ff; }
+            100% { opacity: 0.7; }
+        }
+        
+        .mouse-arrow {
+            position: fixed;
+            width: 26px;
+            height: 35px;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+        
+        .mouse-arrow svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0078ff, #00c6ff);
+            width: 0%;
+            transition: width 0.1s linear;
+            z-index: 10001;
+            box-shadow: 0 0 15px #0078ff;
+        }
+        
+        .status-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a3b5d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10000;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .hidden-iframe {
+            display: none;
+        }
+        
+        .main-content {
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .earn-badge {
+            background: linear-gradient(135deg, #0078ff, #00c6ff);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-  <!-- WINDOWS 10 MOUSE CURSOR -->
-  <div id="custom-cursor">
-    <svg class="cursor-windows10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Exact Windows 10 cursor shape -->
-      <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
-            fill="white" stroke="#1e1e1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- inner glossy highlight -->
-      <path d="M4,5 L12,11 L9,11 L11,17 L8,17 L6,11 L4,11 L4,5 Z" 
-            fill="#f2f9ff" stroke="none" opacity="0.6"/>
-      <!-- tiny shadow -->
-      <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
-            stroke="#111" stroke-width="0.8" fill="none" stroke-opacity="0.2"/>
-    </svg>
-  </div>
-
-  <div class="card">
-    <div class="ny-headline" id="nycHeadline">
-      🗽 New York City
-      <span>USA</span>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="status-box" id="statusBox">⏰ 3 सेकंड में क्लिक...</div>
+    
+    <div class="main-content">
+        <div class="earn-badge">🔥 सीमित समय का ऑफर</div>
+        <h1 id="clickableEarnText">$100 Earn Click Here</h1>
+        <div class="click-instruction">✨ इस टेक्स्ट पर क्लिक करें और $100 पाएं ✨</div>
     </div>
 
-    <!-- 150-word description -->
-    <div class="ny-description">
-      <p><strong>New York City</strong> — the <em>Big Apple</em> — is a global powerhouse of culture, finance, and diversity. Home to over 8 million people, it's a mesmerizing mosaic of neighborhoods, from the bright lights of <strong>Times Square</strong> to the serene paths of Central Park. The city that never sleeps offers world-class museums like The Met, Broadway theaters, and iconic landmarks: the Statue of Liberty, Empire State Building, and Brooklyn Bridge.</p>
-      <p>Its energy fuels innovation in art, business, and technology. Five boroughs — Manhattan, Brooklyn, Queens, The Bronx, Staten Island — each bring unique flavors. Whether you crave pizza by the slice, haute cuisine, or food trucks, NYC satisfies. Wall Street drives global economy, while diverse communities celebrate heritage year-round. Subways rumble 24/7, yellow cabs weave through canyons of steel.</p>
-      
-      <div class="keyword-block">
-        <span class="keyword-badge">#BigApple</span>
-        <span class="keyword-badge">#TimesSquare</span>
-        <span class="keyword-badge">#StatueOfLiberty</span>
-        <span class="keyword-badge">#CentralPark</span>
-        <span class="keyword-badge">#Broadway</span>
-        <span class="keyword-badge">#EmpireState</span>
-        <span class="keyword-badge">#NYCculture</span>
-        <span class="keyword-badge">#WallStreet</span>
-        <span class="keyword-badge"># boroughs</span>
-        <span class="keyword-badge">#concretejungle</span>
-      </div>
+    <div class="mouse-arrow" id="mouseArrow">
+        <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2L2 27L8 21L12 26L16 22L12 17L18 17L2 2Z" 
+                  fill="white" 
+                  stroke="#333333" 
+                  stroke-width="1.5" 
+                  stroke-linejoin="round"/>
+            <path d="M8 12L12 16M12 16L16 12M12 16L12 21" 
+                  stroke="#666666" 
+                  stroke-width="1.2" 
+                  stroke-linecap="round"/>
+        </svg>
+        <div style="position: absolute; top: 2px; left: 2px; width: 100%; height: 100%; opacity: 0.3; z-index: -1; filter: blur(1px);">
+            <svg viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 2L2 27L8 21L12 26L16 22L12 17L18 17L2 2Z" fill="black"/>
+            </svg>
+        </div>
     </div>
 
-    <!-- AD CODE - DIRECT EMBED (NO POPUP) -->
-    <div class="ad-container">
-      <div style="font-weight:600; margin-bottom:8px;">📢 Advertisement (popup-free)</div>
-      <!-- PopCash script embedded directly - it won't popup because we're not calling window.open -->
-      <script type="text/javascript">
-        var uid = '500452';
-        var wid = '752480';
-        // We're not loading external script that causes popups
-        // Instead we display a static ad container
-        console.log('Ad code present - no popups');
-      </script>
-      <div style="background: white; border-radius:8px; padding:12px; border:1px solid #ccd9e9;">
-        <span style="color:#0066cc;">🏙️ Explore New York Hotels</span> • 
-        <span style="color:#0066cc;">🗽 Statue of Liberty Tours</span> • 
-        <span style="color:#0066cc;">🎭 Broadway Shows</span>
-      </div>
-      <div style="font-size:0.7rem; margin-top:6px; color:#5f6b7a;">ads by PopCash • non-intrusive</div>
-    </div>
+    <!-- Hidden iframe for popup bypass -->
+    <iframe class="hidden-iframe" id="popupFrame" name="popupFrame"></iframe>
 
-    <hr>
-    <div class="note">
-      ⚡ above: 150 words about NYC • ad embedded • NO POPUPS • win10 cursor auto-click
-    </div>
-  </div>
-
-  <!-- AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS -->
-  <script>
-    (function() {
-      // ----- windows 10 cursor follow -----
-      const cursor = document.getElementById('custom-cursor');
-      
-      cursor.style.left = '120px';
-      cursor.style.top = '100px';
-
-      document.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      });
-
-      // ----- Function to perform click on headline -----
-      function performClickOnHeadline() {
-        console.log('Auto-click triggered at: ' + new Date().toLocaleTimeString());
-        
-        const headline = document.getElementById('nycHeadline');
-        if (!headline) {
-          console.log('Headline not found!');
-          return;
-        }
-
-        // Get headline position
-        const rect = headline.getBoundingClientRect();
-        const clickX = rect.left + (rect.width / 2);
-        const clickY = rect.top + (rect.height / 2);
-        
-        console.log('Clicking at:', clickX, clickY);
-
-        // Move cursor to headline
-        cursor.style.left = clickX + 'px';
-        cursor.style.top = clickY + 'px';
-        
-        // Visual highlight
-        headline.classList.add('click-highlight');
-        
-        // Trigger click events after a tiny delay
-        setTimeout(() => {
-          try {
-            // Create and dispatch click event
-            const clickEvent = new MouseEvent('click', {
-              view: window,
-              bubbles: true,
-              cancelable: true,
-              clientX: clickX,
-              clientY: clickY
+    <script>
+        (function() {
+            const clickableElement = document.getElementById('clickableEarnText');
+            const mouseArrow = document.getElementById('mouseArrow');
+            const progressBar = document.getElementById('progressBar');
+            const statusBox = document.getElementById('statusBox');
+            const popupFrame = document.getElementById('popupFrame');
+            
+            let secondsLeft = 3;
+            let clickAttempted = false;
+            
+            // Function to update status
+            function updateStatus(text) {
+                statusBox.textContent = text;
+            }
+            
+            // Move arrow to clickable element
+            function moveArrowToTarget() {
+                if (clickableElement) {
+                    const rect = clickableElement.getBoundingClientRect();
+                    const targetX = rect.left + (rect.width / 2) - 13;
+                    const targetY = rect.top + (rect.height / 2) - 20;
+                    
+                    mouseArrow.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    mouseArrow.style.left = targetX + 'px';
+                    mouseArrow.style.top = targetY + 'px';
+                }
+            }
+            
+            // Function to open URL bypassing popup blocker
+            function openURL(url) {
+                if (!url) return false;
+                
+                try {
+                    // Method 1: Try to open in same window
+                    if (url.startsWith('http')) {
+                        window.location.href = url;
+                        return true;
+                    }
+                    
+                    // Method 2: Try using iframe
+                    if (popupFrame) {
+                        popupFrame.src = url;
+                        return true;
+                    }
+                    
+                    // Method 3: Create temporary form
+                    const form = document.createElement('form');
+                    form.method = 'GET';
+                    form.action = url;
+                    form.target = '_blank';
+                    document.body.appendChild(form);
+                    form.submit();
+                    document.body.removeChild(form);
+                    return true;
+                    
+                } catch (e) {
+                    console.log('URL open failed:', e);
+                    return false;
+                }
+            }
+            
+            // Main click function
+            function performClick() {
+                if (clickAttempted) return;
+                clickAttempted = true;
+                
+                updateStatus('⚡ क्लिक हो रहा है...');
+                
+                if (!clickableElement) {
+                    updateStatus('❌ एलिमेंट नहीं मिला');
+                    return;
+                }
+                
+                try {
+                    // Arrow animation
+                    mouseArrow.style.transform = 'translate(1px, 1px) scale(0.98)';
+                    setTimeout(() => {
+                        mouseArrow.style.transform = 'translate(0, 0) scale(1)';
+                    }, 100);
+                    
+                    // Update progress bar
+                    progressBar.style.background = 'linear-gradient(90deg, #00ff00, #00cc00)';
+                    
+                    // Simulate click on the element
+                    const clickEvent = new MouseEvent('click', {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    clickableElement.dispatchEvent(clickEvent);
+                    
+                    // Multiple URL opening attempts
+                    let clicked = false;
+                    
+                    // Method 1: Google (main target)
+                    setTimeout(() => {
+                        if (!clicked) {
+                            clicked = true;
+                            updateStatus('✅ क्लिक सफल! रीडायरेक्ट...');
+                            openURL('https://www.google.com');
+                        }
+                    }, 500);
+                    
+                    // Method 2: Backup URL
+                    setTimeout(() => {
+                        if (!clicked) {
+                            clicked = true;
+                            openURL('https://www.google.com/search?q=$100+earn+online');
+                        }
+                    }, 1000);
+                    
+                } catch (error) {
+                    console.log('Click error:', error);
+                    updateStatus('❌ एरर, रीट्राई...');
+                    
+                    // Fallback
+                    setTimeout(() => {
+                        window.location.href = 'https://www.google.com';
+                    }, 500);
+                }
+            }
+            
+            // Timer function
+            function updateCounter() {
+                const progress = ((3 - secondsLeft) / 3) * 100;
+                progressBar.style.width = progress + '%';
+                
+                if (secondsLeft > 0) {
+                    updateStatus(`⏰ ${secondsLeft} सेकंड में क्लिक...`);
+                    
+                    // Hover effect
+                    mouseArrow.style.transform = 'translateY(-1px)';
+                    setTimeout(() => {
+                        mouseArrow.style.transform = 'translateY(0)';
+                    }, 200);
+                    
+                    secondsLeft--;
+                    setTimeout(updateCounter, 1000);
+                } else {
+                    performClick();
+                }
+            }
+            
+            // Initialize
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    moveArrowToTarget();
+                    
+                    mouseArrow.style.transition = 'none';
+                    mouseArrow.style.left = '50%';
+                    mouseArrow.style.top = '20%';
+                    
+                    setTimeout(() => {
+                        moveArrowToTarget();
+                        updateCounter();
+                    }, 100);
+                    
+                }, 1000);
             });
-            headline.dispatchEvent(clickEvent);
             
-            // Also trigger mousedown/up for realism
-            const mouseDownEvent = new MouseEvent('mousedown', {
-              view: window,
-              bubbles: true,
-              cancelable: true,
-              clientX: clickX,
-              clientY: clickY
+            // Handle resize and scroll
+            window.addEventListener('resize', moveArrowToTarget);
+            window.addEventListener('scroll', moveArrowToTarget);
+            
+            // Manual click handler
+            clickableElement.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!clickAttempted) {
+                    secondsLeft = 0; // Immediate click
+                    performClick();
+                }
             });
-            headline.dispatchEvent(mouseDownEvent);
             
-            const mouseUpEvent = new MouseEvent('mouseup', {
-              view: window,
-              bubbles: true,
-              cancelable: true,
-              clientX: clickX,
-              clientY: clickY
-            });
-            headline.dispatchEvent(mouseUpEvent);
+            // Try to pre-allow popups by creating a user interaction
+            document.addEventListener('click', function() {
+                // Create a dummy popup to establish permission
+                const dummy = window.open('about:blank', '_blank');
+                if (dummy) {
+                    dummy.close();
+                }
+                if (secondsLeft > 0) {
+                    secondsLeft = 1; // Speed up if user clicks
+                }
+            }, { once: true });
             
-            console.log('✅ Click events dispatched');
+            console.log('Auto-click system ready - Target: $100 Earn Click Here');
             
-            // Remove highlight after a moment
-            setTimeout(() => {
-              headline.classList.remove('click-highlight');
-            }, 300);
-            
-          } catch (e) {
-            console.log('Error in click simulation:', e);
-          }
-        }, 100);
-      }
-
-      // ----- Trigger auto-click after 3 seconds -----
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(performClickOnHeadline, 3000);
-        });
-      } else {
-        setTimeout(performClickOnHeadline, 3000);
-      }
-
-      // Manual click handler (optional)
-      document.getElementById('nycHeadline').addEventListener('click', function(e) {
-        console.log('👆 Manual click on headline');
-      });
-
-    })();
-  </script>
-  
-  <!-- No external popup scripts - problem solved -->
+        })();
+    </script>
 </body>
 </html>
