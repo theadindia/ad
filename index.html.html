@@ -4,13 +4,14 @@
   <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New York City</title>
+  <title>New York City · Windows 10 cursor</title>
   <style>
     /* same light theme reset & styles – ad container removed */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      cursor: none;      /* hide system pointer – we draw windows 10 style */
     }
 
     body {
@@ -23,7 +24,8 @@
       margin: 0;
       padding: 20px;
       line-height: 1.5;
-      color: #1e293b;                
+      color: #1e293b;   
+      position: relative;             
     }
 
     .card {
@@ -47,6 +49,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transition: background-color 0.2s;
+      border-radius: 40px;
+      padding: 0.2rem 0.2rem 0.2rem 0;
     }
     .ny-headline span {
       background: #ecfdf3;
@@ -65,7 +70,7 @@
       padding: 1.25rem 1.5rem;
       border-radius: 24px;
       border: 1px solid #e9edf4;
-      margin: 1.2rem 0 0 0;         /* removed bottom margin because ad is gone */
+      margin: 1.2rem 0 0 0;        
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
     }
 
@@ -98,12 +103,11 @@
       align-items: center;
     }
 
-    /* micro layout */
     .note {
       text-align: center;
       color: #8596b0;
       font-size: 0.8rem;
-      margin-top: 1.8rem;      /* slightly increased because ad removed */
+      margin-top: 1.8rem;      
     }
 
     hr {
@@ -112,7 +116,54 @@
       margin: 1.5rem 0 0.5rem 0;
     }
 
-    /* responsiveness */
+    /* WINDOWS 10 CURSOR (exact replica) */
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;          /* default windows cursor size */
+      height: 32px;
+      pointer-events: none;  /* clicks pass through to elements */
+      z-index: 9999;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      transition: transform 0.05s linear;  /* smooth movement */
+      will-change: left, top;
+    }
+
+    /* Windows 10 cursor SVG – exact design: white arrow, black border, tiny notch */
+    .cursor-windows10 {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* click ripple effect (glassy blue ring) */
+    .click-ripple {
+      position: fixed;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(0, 120, 215, 0.6) 90%);
+      transform: translate(-50%, -50%) scale(0);
+      pointer-events: none;
+      z-index: 10000;
+      animation: clickPop 0.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px rgba(0, 153, 255, 0.3);
+    }
+
+    @keyframes clickPop {
+      0% { transform: translate(-50%, -50%) scale(0.1); opacity: 0.9; }
+      60% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+    }
+
+    /* headline highlight during click */
+    .click-highlight {
+      background-color: #ffe1a0 !important;
+      box-shadow: 0 0 0 3px #ff9f1c;
+      transition: background-color 0.1s;
+    }
+
     @media (max-width: 500px) {
       .card { padding: 1.5rem; }
       .ny-headline { font-size: 1.5rem; flex-wrap: wrap; }
@@ -120,19 +171,33 @@
   </style>
 </head>
 <body>
+  <!-- WINDOWS 10 MOUSE CURSOR (white, precise design) -->
+  <div id="custom-cursor">
+    <svg class="cursor-windows10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Exact Windows 10 cursor shape: arrow with sharp tip, slightly curved tail -->
+      <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
+            fill="white" stroke="#1e1e1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- inner glossy highlight to give 3D feel -->
+      <path d="M4,5 L12,11 L9,11 L11,17 L8,17 L6,11 L4,11 L4,5 Z" 
+            fill="#f2f9ff" stroke="none" opacity="0.6"/>
+      <!-- tiny shadow inside for depth -->
+      <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
+            stroke="#111" stroke-width="0.8" fill="none" stroke-opacity="0.2"/>
+    </svg>
+  </div>
+
   <div class="card">
     <!-- new york city section (ad code completely removed) -->
-    <div class="ny-headline">
+    <div class="ny-headline" id="nycHeadline">
       🗽 New York City
-      <span>USA</span>   <!-- changed from "150 words" to "USA" -->
+      <span>USA</span>
     </div>
 
-    <!-- 150-word description (intact) -->
+    <!-- 150-word description -->
     <div class="ny-description">
       <p><strong>New York City</strong> — the <em>Big Apple</em> — is a global powerhouse of culture, finance, and diversity. Home to over 8 million people, it's a mesmerizing mosaic of neighborhoods, from the bright lights of <strong>Times Square</strong> to the serene paths of Central Park. The city that never sleeps offers world-class museums like The Met, Broadway theaters, and iconic landmarks: the Statue of Liberty, Empire State Building, and Brooklyn Bridge.</p>
       <p>Its energy fuels innovation in art, business, and technology. Five boroughs — Manhattan, Brooklyn, Queens, The Bronx, Staten Island — each bring unique flavors. Whether you crave pizza by the slice, haute cuisine, or food trucks, NYC satisfies. Wall Street drives global economy, while diverse communities celebrate heritage year-round. Subways rumble 24/7, yellow cabs weave through canyons of steel.</p>
       
-      <!-- keyword block (still here) -->
       <div class="keyword-block">
         <span class="keyword-badge">#BigApple</span>
         <span class="keyword-badge">#TimesSquare</span>
@@ -147,20 +212,116 @@
       </div>
     </div>
 
-    <!-- THE AD SECTION (250x250) HAS BEEN REMOVED AS REQUESTED. -->
-    <!-- no ad wrapper, no ad box, no 250x250 creative -->
-
     <hr>
     <div class="note">
       ⚡ above: 150 words about New York City • (ad code removed) • clean light theme
     </div>
   </div>
+
+  <!-- popcash script (unchanged, as per original) -->
   <script type="text/javascript">
    var uid = '500452';
    var wid = '752480';
    var pop_fback = 'up';
    var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
    pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
-</script>
+  </script>
+
+  <!-- REAL WINDOWS 10 CURSOR + AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS -->
+  <script>
+    (function() {
+      // ----- windows 10 cursor follow (white, exact) -----
+      const cursor = document.getElementById('custom-cursor');
+      
+      // initial placement (bottom right area, but will move instantly)
+      cursor.style.left = '120px';
+      cursor.style.top = '100px';
+
+      // follow real mouse
+      document.addEventListener('mousemove', function(e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      // ----- ripple effect generator (mimics click) -----
+      function createClickRipple(x, y) {
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ripple';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        document.body.appendChild(ripple);
+        setTimeout(() => {
+          if (ripple.parentNode) ripple.remove();
+        }, 500);
+      }
+
+      // ----- function that performs a perfect windows‑style click on the headline -----
+      function performClickOnHeadline() {
+        const headline = document.getElementById('nycHeadline');
+        if (!headline) return;
+
+        const rect = headline.getBoundingClientRect();
+        // click a bit left of center (looks natural on the word "New York City")
+        const clickX = rect.left + 70;  // roughly over the "New" part
+        const clickY = rect.top + rect.height / 2 - 2; // slightly higher (fine)
+
+        // 1) instantly move cursor to that position (no easing – instant snap)
+        cursor.style.left = clickX + 'px';
+        cursor.style.top = clickY + 'px';
+
+        // 2) after a tiny moment (like human reaction), show click effects
+        setTimeout(() => {
+          // add highlight to headline
+          headline.classList.add('click-highlight');
+
+          // create the visual ripple at cursor
+          createClickRipple(clickX, clickY);
+
+          // dispatch a genuine click event (so any listeners react)
+          const clickEvent = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true,
+            clientX: clickX,
+            clientY: clickY
+          });
+          headline.dispatchEvent(clickEvent);
+
+          // log to console (so you know it's real)
+          console.log('🖱️ Windows 10 cursor clicked on NYC headline at', new Date().toLocaleTimeString());
+
+          // remove highlight after 300ms
+          setTimeout(() => {
+            headline.classList.remove('click-highlight');
+          }, 280);
+        }, 70); // 70ms delay makes it feel like the cursor "presses"
+      }
+
+      // ----- schedule the click exactly 3 seconds after page load -----
+      setTimeout(() => {
+        performClickOnHeadline();
+      }, 3000); // 3 seconds
+
+      // ----- optional: also log if user manually clicks (but not needed) -----
+      document.getElementById('nycHeadline').addEventListener('click', function(e) {
+        // just for verification, you'll see two logs if both auto & manual happen.
+        console.log('🔔 Native click event caught on headline (real user or auto)');
+      });
+
+    })();
+  </script>
+
+  <!-- extra tiny style for click highlight -->
+  <style>
+    .ny-headline {
+      user-select: none;
+      transition: background-color 0.2s, box-shadow 0.2s;
+      cursor: none; /* consistent with global */
+    }
+    .ny-headline.click-highlight {
+      background-color: #fddc9b !important;
+      box-shadow: 0 0 0 4px #f97316;
+    }
+  </style>
 </body>
 </html>
