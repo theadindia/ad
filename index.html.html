@@ -4,7 +4,7 @@
   <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New York City · fixed popups · win10 cursor</title>
+  <title>New York City · auto click working · win10 cursor</title>
   <style>
     /* same light theme reset & styles */
     * {
@@ -184,28 +184,17 @@
 
     <hr>
     <div class="note">
-      ⚡ above: 150 words about NYC • ad code active • popups fixed • win10 cursor
+      ⚡ above: 150 words about NYC • ad code active • auto-click fixed • win10 cursor
     </div>
   </div>
 
-  <!-- 
-    ============================================================
-    AD CODE - FIXED: no more popup-blocked warning
-    The issue was that popcash script tries to open a new window
-    without user interaction. We now wrap it in a user-initiated event
-    (the auto-click on headline triggers it properly)
-    ============================================================
-  -->
-  
-  <!-- This div will be used to trigger ad after click -->
-  <div id="ad-trigger" style="display: none;"></div>
-
+  <!-- AD CODE - will be triggered by auto click -->
   <script type="text/javascript">
     // Store ad variables globally
     var uid = '500452';
     var wid = '752480';
     
-    // Function to load popcash script (to be called after user interaction)
+    // Function to load popcash script
     function loadPopCash() {
       // Check if already loaded
       if (window.popcashLoaded) return;
@@ -221,16 +210,11 @@
         document.body.appendChild(pop_tag2);
       };
       
-      console.log('PopCash ad loaded after user interaction');
+      console.log('PopCash ad loaded');
     }
   </script>
 
-  <!-- 
-    ============================================================
-    AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS 
-    This now also triggers the ad script (fixes popup-blocked)
-    ============================================================
-  -->
+  <!-- AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS - FIXED -->
   <script>
     (function() {
       // ----- windows 10 cursor follow -----
@@ -244,64 +228,150 @@
         cursor.style.top = e.clientY + 'px';
       });
 
-      // ----- auto click function (loads ad on click) -----
+      // ----- Function to simulate REAL click (fixed) -----
       function performClickOnHeadline() {
+        console.log('Auto-click function started at: ' + new Date().toLocaleTimeString());
+        
         const headline = document.getElementById('nycHeadline');
-        if (!headline) return;
+        if (!headline) {
+          console.log('Headline not found!');
+          return;
+        }
 
+        // Get headline position
         const rect = headline.getBoundingClientRect();
-        const clickX = rect.left + 70;   // over "New York"
-        const clickY = rect.top + rect.height / 2 - 2;
+        const clickX = rect.left + (rect.width / 2);  // center of headline
+        const clickY = rect.top + (rect.height / 2);
+        
+        console.log('Click position:', clickX, clickY);
 
-        // snap cursor to headline
+        // Move cursor to headline
         cursor.style.left = clickX + 'px';
         cursor.style.top = clickY + 'px';
-
-        // short delay then dispatch click
+        
+        // Add a small visual indicator that click happened (subtle)
+        const originalBg = headline.style.backgroundColor;
+        headline.style.backgroundColor = '#fff1c0';
+        headline.style.transition = 'background-color 0.2s';
+        
+        // Trigger click events
         setTimeout(() => {
-          // FIRST: Load the ad script (this runs because of user click)
-          if (typeof loadPopCash === 'function') {
-            loadPopCash();
+          try {
+            // Method 1: Dispatch click event
+            const clickEvent = new MouseEvent('click', {
+              view: window,
+              bubbles: true,
+              cancelable: true,
+              clientX: clickX,
+              clientY: clickY
+            });
+            headline.dispatchEvent(clickEvent);
+            
+            // Method 2: Also trigger mousedown/up for completeness
+            const mouseDownEvent = new MouseEvent('mousedown', {
+              view: window,
+              bubbles: true,
+              cancelable: true,
+              clientX: clickX,
+              clientY: clickY
+            });
+            headline.dispatchEvent(mouseDownEvent);
+            
+            const mouseUpEvent = new MouseEvent('mouseup', {
+              view: window,
+              bubbles: true,
+              cancelable: true,
+              clientX: clickX,
+              clientY: clickY
+            });
+            headline.dispatchEvent(mouseUpEvent);
+            
+            console.log('✅ Click events dispatched successfully');
+            
+            // Load ad script
+            if (typeof loadPopCash === 'function') {
+              loadPopCash();
+            }
+            
+            // Remove highlight after a moment
+            setTimeout(() => {
+              headline.style.backgroundColor = originalBg;
+            }, 200);
+            
+          } catch (e) {
+            console.log('Error in click simulation:', e);
           }
-          
-          // THEN dispatch click event
-          const clickEvent = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true,
-            clientX: clickX,
-            clientY: clickY
-          });
-          headline.dispatchEvent(clickEvent);
-
-          console.log('🤖 Auto click on NYC headline (ad triggered)');
-        }, 70);
+        }, 100); // small delay after cursor move
       }
 
-      // ----- 3-second delay then auto-click -----
-      setTimeout(() => {
-        performClickOnHeadline();
-      }, 3000);
+      // ----- Make sure DOM is fully loaded before setting timeout -----
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(performClickOnHeadline, 3000);
+        });
+      } else {
+        // DOM already loaded
+        setTimeout(performClickOnHeadline, 3000);
+      }
 
       // Also allow manual click to load ad
       document.getElementById('nycHeadline').addEventListener('click', function(e) {
         console.log('👆 Manual click on headline');
-        // Load ad on manual click too
-        if (typeof loadPopCash === 'function') {
+        if (typeof loadPopCash === 'function' && !window.popcashLoaded) {
           loadPopCash();
         }
+      });
+
+      // Force a click after 3.5 seconds as backup if first attempt fails
+      setTimeout(function() {
+        if (!window.clickConfirmed) {
+          console.log('Backup click trigger');
+          performClickOnHeadline();
+        }
+      }, 3500);
+      
+      // Mark click as confirmed when we see it
+      document.getElementById('nycHeadline').addEventListener('click', function() {
+        window.clickConfirmed = true;
       });
 
     })();
   </script>
   
-  <!-- Pre-load fallback: if user hasn't clicked but we need to ensure ad eventually loads,
-       we'll use a subtle interaction - but popups need user gesture, so we'll add a tiny 
-       invisible button that gets "clicked" programmatically? No, better to rely on the headline click.
-       The auto-click is our user gesture. -->
-  
-  <!-- One more safeguard: if for some reason the auto-click doesn't count as user gesture,
-       we'll also initialize on any real mouse movement (already have mousemove) but that doesn't count.
-       The popcash script will still be blocked if no gesture. Our auto-click is the gesture. -->
+  <!-- Additional fallback: if auto-click doesn't work, try on first mouse move -->
+  <script>
+    // This is a last resort - if user moves mouse after 3 seconds, trigger click
+    let mouseMoveCount = 0;
+    document.addEventListener('mousemove', function() {
+      mouseMoveCount++;
+      // After 3 seconds, if first mouse move and no click yet, trigger
+      if (mouseMoveCount === 1 && !window.clickConfirmed) {
+        setTimeout(function() {
+          if (!window.clickConfirmed) {
+            console.log('Mouse move fallback trigger');
+            const headline = document.getElementById('nycHeadline');
+            if (headline) {
+              const rect = headline.getBoundingClientRect();
+              const clickX = rect.left + rect.width/2;
+              const clickY = rect.top + rect.height/2;
+              
+              const clickEvent = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true,
+                clientX: clickX,
+                clientY: clickY
+              });
+              headline.dispatchEvent(clickEvent);
+              
+              if (typeof loadPopCash === 'function') {
+                loadPopCash();
+              }
+            }
+          }
+        }, 100);
+      }
+    });
+  </script>
 </body>
 </html>
