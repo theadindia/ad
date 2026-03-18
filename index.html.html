@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light Theme · New York City · 250x250 Ad</title>
+  <style>
+    /* ----- Light theme reset ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f8faff;    /* very light sky hint */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+      color: #1e293b;                /* soft dark for text */
+    }
+
+    /* main card – clean white with subtle shadow */
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.05), 
+                  0 5px 12px -4px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.5rem 2rem;
+      border: 1px solid #f0f2f5;
+      transition: all 0.2s ease;
+    }
+
+    /* headline for the city */
+    .ny-headline {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #0b1e33;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ny-headline span {
+      background: #ecfdf3;
+      color: #0b4f2e;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid #cef0d7;
+    }
+
+    /* description text – target 150 words */
+    .ny-description {
+      font-size: 1rem;
+      color: #334155;
+      background: #f9fbfe;
+      padding: 1.25rem 1.5rem;
+      border-radius: 24px;
+      border: 1px solid #e9edf4;
+      margin: 1.2rem 0 2rem 0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .ny-description p {
+      margin-bottom: 0.8rem;
+    }
+
+    .ny-description p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* keyword highlight */
+    .keyword-badge {
+      display: inline-block;
+      background-color: #e6f0ff;
+      color: #004e9e;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin: 0.2rem 0.15rem;
+      border: 1px solid #cddfff;
+      white-space: nowrap;
+    }
+
+    .keyword-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.6rem;
+      margin-top: 0.8rem;
+      align-items: center;
+    }
+
+    /* ad container – 250x250, centered */
+    .ad-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0 0.5rem 0;
+    }
+
+    .ad-box {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(145deg, #f3f6fc, #ffffff);
+      border: 1px solid #dfe7f2;
+      border-radius: 24px;
+      box-shadow: 0 10px 18px -10px rgba(0, 37, 79, 0.1), 0 0 0 1px rgba(210, 222, 240, 0.3) inset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: transform 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .ad-box:hover {
+      transform: scale(1.01);
+      border-color: #c0d0eb;
+    }
+
+    /* creative ad interior (light ad mock) */
+    .ad-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #65748c;
+      background: #eef2f8;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      margin-bottom: 0.8rem;
+    }
+
+    .ad-message {
+      font-weight: 600;
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, #1d2c3f, #2b3f5c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      max-width: 200px;
+    }
+
+    .ad-cta {
+      background: #dde7fc;
+      color: #11325c;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #b7caf0;
+      cursor: default;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .ad-dim {
+      font-size: 0.7rem;
+      color: #8a99b0;
+      margin-top: 0.7rem;
+      border-top: 1px dashed #d3ddee;
+      padding-top: 0.4rem;
+      width: 80%;
+    }
+
+    /* micro layout */
+    .note {
+      text-align: center;
+      color: #8596b0;
+      font-size: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eef2f8;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    /* responsiveness */
+    @media (max-width: 500px) {
+      .card { padding: 1.5rem; }
+      .ny-headline { font-size: 1.5rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- new york city section (exactly above the ad) -->
+    <div class="ny-headline">
+      🗽 New York City
+      <span>150 words</span>
+    </div>
+
+    <!-- 150-word description with keywords -->
+    <div class="ny-description">
+      <p><strong>New York City</strong> — the <em>Big Apple</em> — is a global powerhouse of culture, finance, and diversity. Home to over 8 million people, it's a mesmerizing mosaic of neighborhoods, from the bright lights of <strong>Times Square</strong> to the serene paths of Central Park. The city that never sleeps offers world-class museums like The Met, Broadway theaters, and iconic landmarks: the Statue of Liberty, Empire State Building, and Brooklyn Bridge.</p>
+      <p>Its energy fuels innovation in art, business, and technology. Five boroughs — Manhattan, Brooklyn, Queens, The Bronx, Staten Island — each bring unique flavors. Whether you crave pizza by the slice, haute cuisine, or food trucks, NYC satisfies. Wall Street drives global economy, while diverse communities celebrate heritage year-round. Subways rumble 24/7, yellow cabs weave through canyons of steel.</p>
+      <!-- keyword block (visible, light style) -->
+      <div class="keyword-block">
+        <span class="keyword-badge">#BigApple</span>
+        <span class="keyword-badge">#TimesSquare</span>
+        <span class="keyword-badge">#StatueOfLiberty</span>
+        <span class="keyword-badge">#CentralPark</span>
+        <span class="keyword-badge">#Broadway</span>
+        <span class="keyword-badge">#EmpireState</span>
+        <span class="keyword-badge">#NYCculture</span>
+        <span class="keyword-badge">#WallStreet</span>
+        <span class="keyword-badge"># boroughs</span>
+        <span class="keyword-badge">#concretejungle</span>
+      </div>
+    </div>
+
+    <!-- AD SECTION: 250x250 exactly centered -->
+    <div class="ad-wrapper">
+      <div class="ad-box">
+        <!-- inner ad creative (250x250) light theme -->
+        <div class="ad-label">📌 Advertisement</div>
+        <div class="ad-message">Explore NYC <br>with GoGuide</div>
+        <div class="ad-cta">✨ visit website</div>
+        <div class="ad-dim">250x250</div>
+        <!-- subtle pattern to feel like real ad -->
+        <div style="font-size:0.5rem; color:#b6c5dd; margin-top:0.2rem;">▲ exactly 250x250 ▲</div>
+      </div>
+    </div>
+
+    <!-- optional small note (just to show word count) -->
+    <hr>
+    <div class="note">
+      ⚡ above: 150 words about New York City • center: 250x250 ad • clean light theme
+    </div>
+  </div>
+</body>
+</html>
