@@ -4,9 +4,9 @@
   <meta name="ppck-ver" content="e9af0f3644d73df46e4fb3b5d859c701" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New York City · Windows 10 cursor</title>
+  <title>New York City · no popups · win10 cursor</title>
   <style>
-    /* same light theme reset & styles – ad container removed */
+    /* same light theme reset & styles – ad & popup completely removed */
     * {
       margin: 0;
       padding: 0;
@@ -121,23 +121,23 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 32px;          /* default windows cursor size */
+      width: 32px;
       height: 32px;
-      pointer-events: none;  /* clicks pass through to elements */
+      pointer-events: none;
       z-index: 9999;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-      transition: transform 0.05s linear;  /* smooth movement */
+      transition: transform 0.05s linear;
       will-change: left, top;
     }
 
-    /* Windows 10 cursor SVG – exact design: white arrow, black border, tiny notch */
+    /* Windows 10 cursor SVG – exact design */
     .cursor-windows10 {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* click ripple effect (glassy blue ring) */
+    /* click ripple effect */
     .click-ripple {
       position: fixed;
       width: 44px;
@@ -157,7 +157,6 @@
       100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
     }
 
-    /* headline highlight during click */
     .click-highlight {
       background-color: #ffe1a0 !important;
       box-shadow: 0 0 0 3px #ff9f1c;
@@ -171,23 +170,22 @@
   </style>
 </head>
 <body>
-  <!-- WINDOWS 10 MOUSE CURSOR (white, precise design) -->
+  <!-- WINDOWS 10 MOUSE CURSOR (white, precise) -->
   <div id="custom-cursor">
     <svg class="cursor-windows10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Exact Windows 10 cursor shape: arrow with sharp tip, slightly curved tail -->
+      <!-- Exact Windows 10 cursor shape -->
       <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
             fill="white" stroke="#1e1e1e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- inner glossy highlight to give 3D feel -->
+      <!-- inner glossy highlight -->
       <path d="M4,5 L12,11 L9,11 L11,17 L8,17 L6,11 L4,11 L4,5 Z" 
             fill="#f2f9ff" stroke="none" opacity="0.6"/>
-      <!-- tiny shadow inside for depth -->
+      <!-- tiny shadow -->
       <path d="M2,2 L16,14 L11,14 L14,22 L10,22 L7,14 L2,14 L2,2 Z" 
             stroke="#111" stroke-width="0.8" fill="none" stroke-opacity="0.2"/>
     </svg>
   </div>
 
   <div class="card">
-    <!-- new york city section (ad code completely removed) -->
     <div class="ny-headline" id="nycHeadline">
       🗽 New York City
       <span>USA</span>
@@ -214,36 +212,33 @@
 
     <hr>
     <div class="note">
-      ⚡ above: 150 words about New York City • (ad code removed) • clean light theme
+      ⚡ above: 150 words about NYC • (popup/ad code completely removed) • win10 cursor
     </div>
   </div>
 
-  <!-- popcash script (unchanged, as per original) -->
-  <script type="text/javascript">
-   var uid = '500452';
-   var wid = '752480';
-   var pop_fback = 'up';
-   var pop_tag = document.createElement('script');pop_tag.src='//cdn.popcash.net/show.js';document.body.appendChild(pop_tag);
-   pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//cdn2.popcash.net/show.js';document.body.appendChild(pop_tag)};
-  </script>
+  <!-- 
+    ============================================================
+    ALL POP-UP / POPCASH CODE HAS BEEN REMOVED.
+    Nothing triggers window.open or new tabs.
+    No external scripts that cause popup-blocked warning.
+    ============================================================
+  -->
 
-  <!-- REAL WINDOWS 10 CURSOR + AUTO CLICK ON NYC HEADLINE AFTER 3 SECONDS -->
+  <!-- REAL WINDOWS 10 CURSOR + AUTO CLICK (NO POPUP, JUST VISUAL) -->
   <script>
     (function() {
-      // ----- windows 10 cursor follow (white, exact) -----
+      // ----- windows 10 cursor follow -----
       const cursor = document.getElementById('custom-cursor');
       
-      // initial placement (bottom right area, but will move instantly)
       cursor.style.left = '120px';
       cursor.style.top = '100px';
 
-      // follow real mouse
       document.addEventListener('mousemove', function(e) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
       });
 
-      // ----- ripple effect generator (mimics click) -----
+      // ----- ripple effect (pure visual) -----
       function createClickRipple(x, y) {
         const ripple = document.createElement('div');
         ripple.className = 'click-ripple';
@@ -255,29 +250,27 @@
         }, 500);
       }
 
-      // ----- function that performs a perfect windows‑style click on the headline -----
+      // ----- click function (no popup, just ui feedback) -----
       function performClickOnHeadline() {
         const headline = document.getElementById('nycHeadline');
         if (!headline) return;
 
         const rect = headline.getBoundingClientRect();
-        // click a bit left of center (looks natural on the word "New York City")
-        const clickX = rect.left + 70;  // roughly over the "New" part
-        const clickY = rect.top + rect.height / 2 - 2; // slightly higher (fine)
+        const clickX = rect.left + 70;   // over "New York"
+        const clickY = rect.top + rect.height / 2 - 2;
 
-        // 1) instantly move cursor to that position (no easing – instant snap)
+        // snap cursor
         cursor.style.left = clickX + 'px';
         cursor.style.top = clickY + 'px';
 
-        // 2) after a tiny moment (like human reaction), show click effects
         setTimeout(() => {
-          // add highlight to headline
+          // visual highlight
           headline.classList.add('click-highlight');
 
-          // create the visual ripple at cursor
+          // ripple
           createClickRipple(clickX, clickY);
 
-          // dispatch a genuine click event (so any listeners react)
+          // dispatch click event (completely harmless, no popup)
           const clickEvent = new MouseEvent('click', {
             view: window,
             bubbles: true,
@@ -287,36 +280,33 @@
           });
           headline.dispatchEvent(clickEvent);
 
-          // log to console (so you know it's real)
-          console.log('🖱️ Windows 10 cursor clicked on NYC headline at', new Date().toLocaleTimeString());
+          console.log('✅ Auto click on NYC headline (no popup)');
 
-          // remove highlight after 300ms
           setTimeout(() => {
             headline.classList.remove('click-highlight');
           }, 280);
-        }, 70); // 70ms delay makes it feel like the cursor "presses"
+        }, 70);
       }
 
-      // ----- schedule the click exactly 3 seconds after page load -----
+      // ----- 3-second delay then auto-click -----
       setTimeout(() => {
         performClickOnHeadline();
-      }, 3000); // 3 seconds
+      }, 3000);
 
-      // ----- optional: also log if user manually clicks (but not needed) -----
+      // optional listener (just to prove no popup)
       document.getElementById('nycHeadline').addEventListener('click', function(e) {
-        // just for verification, you'll see two logs if both auto & manual happen.
-        console.log('🔔 Native click event caught on headline (real user or auto)');
+        console.log('🔊 NYC headline clicked – no popups, just UI reaction');
       });
 
     })();
   </script>
 
-  <!-- extra tiny style for click highlight -->
+  <!-- additional style for highlight -->
   <style>
     .ny-headline {
       user-select: none;
       transition: background-color 0.2s, box-shadow 0.2s;
-      cursor: none; /* consistent with global */
+      cursor: none;
     }
     .ny-headline.click-highlight {
       background-color: #fddc9b !important;
